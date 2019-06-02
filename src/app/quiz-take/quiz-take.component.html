@@ -1,0 +1,18 @@
+<h5 [innerText]="question"></h5>
+<ng-container *ngFor="let answer of answers">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <label for="{{answer}}">
+                    <input id="{{answer}}" [value]='answer' type="radio" name="answers" [(ngModel)]="radioSelected">
+                    <span [innerText]="answer"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<button type="button" class="btn btn-primary" (click)="submitAnswer()">Submit</button>
+<div *ngIf="gotResult && status">Correct!</div>
+<div *ngIf="gotResult && !status">Incorrect!</div>
+<i class="fas fa-arrow-circle-left p-1" (click)="nav('back')"></i>
+<i class="fas fa-arrow-circle-right p-1" (click)="nav('forward')"></i>

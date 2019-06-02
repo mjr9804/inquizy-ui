@@ -1,0 +1,29 @@
+<div class="row d-flex justify-content-center">
+    <div class="col card mx-5">
+        <div class="card-body">
+            <h5 class="card-title">Create/Edit a Quiz</h5>
+            <p class="card-text">Create/edit a quiz by entering multiple choice questions</p>
+            <a href="list" class="btn btn-primary">Create/Edit</a>
+        </div>
+    </div>
+    <div class="col card mx-5">
+        <div class="card-body">
+            <h5 class="card-title">Take a Quiz</h5>
+            <p class="card-text">Test your knowledge and take a quiz</p>
+            <div class="dropdown">
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Take
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <ng-container *ngFor="let quiz of list">
+                        <a class="dropdown-item" [routerLink]="['take/', quiz._id]" [queryParams]="{q: 1}"
+                            [innerText]='quiz.name'>
+                        </a>
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

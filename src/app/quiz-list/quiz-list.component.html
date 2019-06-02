@@ -1,0 +1,48 @@
+<button class="btn btn-primary" data-toggle="modal" data-target="#newQuizModal">Create New</button>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Actions</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let quiz of list">
+            <tr>
+                <th scope="col">
+                    <i class="fas fa-edit p-1" [routerLink]="['/details/', quiz._id]">
+                    </i>
+                    <i class="fas fa-trash p-1"></i>
+                </th>
+                <td>{{quiz.name}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<div class="modal fade" id="newQuizModal" tabindex="-1" role="dialog" aria-labelledby="newQuizModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newQuizModalLabel">New Quiz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newQuizNameInput">Quiz Name</label>
+                        <input type="text" class="form-control" id="newQuizNameInput" name="newQuizNameInput"
+                            [(ngModel)]="newName" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="createNewQuiz()">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
