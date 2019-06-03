@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -16,13 +17,15 @@ export class QuizDetailsComponent implements OnInit {
     public incorrectAnswer1: string;
     public incorrectAnswer2: string;
     public incorrectAnswer3: string;
+    public newQuestionModal: BsModalRef;
 
     constructor(
         private apiService: ApiService,
+        private modalService: BsModalService,
         private route: ActivatedRoute,
     ) {
         this.route.params.subscribe(params => {
-            this.id = params.id
+            this.id = params.id;
         });
     }
 
@@ -37,6 +40,13 @@ export class QuizDetailsComponent implements OnInit {
         });
     }
 
+    showModal(template: TemplateRef<any>) {
+        this.newQuestionModal = this.modalService.show(template, { class: 'modal-lg' });
+    }
+
+    hideModal() {
+        this.newQuestionModal.hide();
+    }
 
     addQuestion() {
         if (this.question && this.correctAnswer) {
@@ -44,9 +54,13 @@ export class QuizDetailsComponent implements OnInit {
                 question: this.question,
                 correct: this.correctAnswer,
                 incorrect: [this.incorrectAnswer1, this.incorrectAnswer2, this.incorrectAnswer3],
-            }
+            };
             this.apiService.addQuestion(this.id, q).subscribe(() => {
                 this.question = '';
+                this.correctAnswer = '';
+                this.incorrectAnswer1 = '';
+                this.incorrectAnswer2 = '';
+                this.incorrectAnswer3 = '';
             });
         }
     }

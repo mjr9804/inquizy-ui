@@ -1,55 +1,58 @@
 <h3 [innerText]="quizName"></h3>
-<button class="btn btn-primary" data-toggle="modal" data-target="#newQuestionModal">Add Question</button>
+<button class="btn btn-primary" (click)="showModal(newQuestionModal)">Add Question</button>
 <table class="table mt-3">
-	<thead>
-		<tr>
-			<th scope="col">Actions</th>
-			<th scope="col">Question</th>
-		</tr>
-	</thead>
-	<tbody>
-			<ng-container *ngFor="let question of questions">
-				<tr>
-					<th scope="col">
-						<i class="fas fa-trash p-1"></i>
-					</th>
-					<td>{{question.question}}</td>
-				</tr>
-			</ng-container>
-	</tbody>
+    <thead>
+        <tr>
+            <th scope="col">Actions</th>
+            <th scope="col">Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let question of questions">
+            <tr>
+                <th scope="col">
+                    <i class="fas fa-trash p-1"></i>
+                </th>
+                <td>{{question.question}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
 </table>
 
-<div class="modal fade" id="newQuestionModal" tabindex="-1" role="dialog" aria-labelledby="newQuestionModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="newQuestionModalLabel">New Question</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form>
-			<div class="modal-body">
-				<div class="form-group">
-					<label for="newQuestionNameInput">Question</label>
-					<input type="text" class="form-control" id="newQuestionNameInput" name="newQuestionNameInput" [(ngModel)]="question" placeholder="Enter question">
-				</div>
-				<div class="form-group">
-						<label for="correctInput">Correct Answer</label>
-						<input type="text" class="form-control" id="correctInput" name="correctInput" [(ngModel)]="correctAnswer" placeholder="Enter correct answer">
-				</div>
-				<div class="form-group">
-						<label for="incorrectInput">Incorrect Answers</label>
-						<input type="text" class="form-control" id="incorrectInput" name="incorrectInput" [(ngModel)]="incorrectAnswer1" placeholder="Enter incorrect answer">
-						<input type="text" class="form-control" id="incorrectInput2" name="incorrectInput2" [(ngModel)]="incorrectAnswer2" placeholder="Enter incorrect answer">
-						<input type="text" class="form-control" id="incorrectInput3" name="incorrectInput3" [(ngModel)]="incorrectAnswer3" placeholder="Enter incorrect answer">
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" (click)="addQuestion()">Add</button>
-			</div>
-			</form>
-			</div>
-		</div>
-	</div>
+<ng-template #newQuestionModal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="newQuestionModalLabel">New Question</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div>
+        <form>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newQuestionNameInput">Question</label>
+                    <input type="text" class="form-control" id="newQuestionNameInput" name="newQuestionNameInput"
+                        [(ngModel)]="question" placeholder="Enter question">
+                </div>
+                <div class="form-group">
+                    <label for="correctInput">Correct Answer</label>
+                    <input type="text" class="form-control" id="correctInput" name="correctInput"
+                        [(ngModel)]="correctAnswer" placeholder="Enter correct answer">
+                </div>
+                <div class="form-group">
+                    <label for="incorrectInput">Incorrect Answers</label>
+                    <input type="text" class="form-control" id="incorrectInput" name="incorrectInput"
+                        [(ngModel)]="incorrectAnswer1" placeholder="Enter incorrect answer">
+                    <input type="text" class="form-control" id="incorrectInput2" name="incorrectInput2"
+                        [(ngModel)]="incorrectAnswer2" placeholder="Enter incorrect answer">
+                    <input type="text" class="form-control" id="incorrectInput3" name="incorrectInput3"
+                        [(ngModel)]="incorrectAnswer3" placeholder="Enter incorrect answer">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addQuestion()">Add</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
