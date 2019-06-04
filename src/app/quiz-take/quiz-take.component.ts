@@ -13,7 +13,7 @@ export class QuizTakeComponent implements OnInit {
     private id: string;
     private q: number;
     private quiz: any;
-    private submitted = false;
+    public submitted = false;
     public question: string;
     public answers: string[];
     public radioSelected: string;
