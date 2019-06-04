@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
 import { QuizTakeComponent } from './quiz-take/quiz-take.component';
+import { ScoreReportComponent } from './score-report/score-report.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { QuizTakeComponent } from './quiz-take/quiz-take.component';
         HomeComponent,
         QuizListComponent,
         QuizDetailsComponent,
-        QuizTakeComponent
+        QuizTakeComponent,
+        ScoreReportComponent
     ],
     imports: [
         BrowserModule,

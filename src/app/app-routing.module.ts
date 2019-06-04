@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
 import { QuizTakeComponent } from './quiz-take/quiz-take.component';
+import { ScoreReportComponent } from './score-report/score-report.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'take/:id',
         component: QuizTakeComponent,
+    },
+    {
+        path: 'score-report',
+        component: ScoreReportComponent,
     },
     {
         path: '**',

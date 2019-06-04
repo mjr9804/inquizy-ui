@@ -1,0 +1,19 @@
+<h5>Total Score: {{ total | percent }}</h5>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let score of scores">
+            <tr>
+                <th scope="col">
+                    <span [innerText]="score.question"></span>
+                </th>
+                <td>{{score.result ? 'Correct' : 'Incorrect'}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

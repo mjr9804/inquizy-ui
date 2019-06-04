@@ -17,7 +17,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <ng-container *ngFor="let quiz of list">
-                        <a class="dropdown-item" [routerLink]="['take/', quiz._id]" [queryParams]="{q: 1}"
+                        <a class="dropdown-item" [routerLink]="['take/', quiz._id]"
                             [innerText]='quiz.name'>
                         </a>
                     </ng-container>
