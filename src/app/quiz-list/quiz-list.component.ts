@@ -45,4 +45,9 @@ export class QuizListComponent implements OnInit {
         }
     }
 
+    delete(id: string) {
+        this.apiService.deleteQuiz(id).subscribe(() => {
+            this.fetchData();
+        });
+    }
 }

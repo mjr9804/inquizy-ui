@@ -12,7 +12,7 @@
                 <th scope="col">
                     <i class="fas fa-edit p-1" [routerLink]="['/details/', quiz._id]">
                     </i>
-                    <i class="fas fa-trash p-1"></i>
+                    <i class="fas fa-trash p-1" (click)="delete(quiz._id)"></i>
                 </th>
                 <td>{{quiz.name}}</td>
             </tr>

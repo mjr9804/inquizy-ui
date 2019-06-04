@@ -44,4 +44,8 @@ export class ApiService {
     public deleteQuestion(id: string, questionId: string) {
         return this.http.delete(`${this.detailsUrl}/${id}/${questionId}`);
     }
+
+    public deleteQuiz(id: string) {
+        return this.http.delete(`${this.listUrl}/${id}`);
+    }
 }
