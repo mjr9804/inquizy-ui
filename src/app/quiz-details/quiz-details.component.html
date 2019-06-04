@@ -50,6 +50,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <div *ngIf="showResult" [ngClass]="addResult ? 'text-success' : 'text-danger'" [innerText]="addResult ? 'Question added' : 'An error occurred while adding the question'"></div>
                 <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
                 <button type="button" class="btn btn-primary" (click)="addQuestion()">Add</button>
             </div>

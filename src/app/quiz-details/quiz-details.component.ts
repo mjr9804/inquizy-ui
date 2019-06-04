@@ -1,5 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../api.service';
 
@@ -18,6 +20,8 @@ export class QuizDetailsComponent implements OnInit {
     public incorrectAnswer2: string;
     public incorrectAnswer3: string;
     public newQuestionModal: BsModalRef;
+    public addResult: boolean;
+    public showResult = false;
 
     constructor(
         private apiService: ApiService,
@@ -46,6 +50,7 @@ export class QuizDetailsComponent implements OnInit {
 
     hideModal() {
         this.newQuestionModal.hide();
+        this.fetchData();
     }
 
     addQuestion() {
@@ -55,13 +60,28 @@ export class QuizDetailsComponent implements OnInit {
                 correct: this.correctAnswer,
                 incorrect: [this.incorrectAnswer1, this.incorrectAnswer2, this.incorrectAnswer3],
             };
-            this.apiService.addQuestion(this.id, q).subscribe(() => {
-                this.question = '';
-                this.correctAnswer = '';
-                this.incorrectAnswer1 = '';
-                this.incorrectAnswer2 = '';
-                this.incorrectAnswer3 = '';
-            });
+            this.apiService.addQuestion(this.id, q)
+                .pipe(
+                    catchError(err => {
+                        console.log(err);
+                        this.addResult = false;
+                        this.showResult = true;
+                        return EMPTY;
+                    }),
+                )
+                .subscribe(() => {
+                    this.question = '';
+                    this.correctAnswer = '';
+                    this.incorrectAnswer1 = '';
+                    this.incorrectAnswer2 = '';
+                    this.incorrectAnswer3 = '';
+                    this.showResult = true;
+                    this.addResult = true;
+                    setTimeout(() => {
+                        this.showResult = false;
+                    }, 3000);
+                }
+            );
         }
     }
 
