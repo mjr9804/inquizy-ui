@@ -1,4 +1,4 @@
-<h5>Total Score: {{ total | percent }}</h5>
+<h5 class="text-right">Total Score: {{ (total / 100) | percent }}</h5>
 <table class="table mt-3">
     <thead>
         <tr>
@@ -12,7 +12,8 @@
                 <th scope="col">
                     <span [innerText]="score.question"></span>
                 </th>
-                <td>{{score.result ? 'Correct' : 'Incorrect'}}</td>
+                <td *ngIf="score.result" class="text-success">Correct</td>
+                <td *ngIf="!score.result" class="text-danger">Incorrect</td>
             </tr>
         </ng-container>
     </tbody>
