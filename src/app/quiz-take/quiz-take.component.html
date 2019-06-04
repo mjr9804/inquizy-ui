@@ -14,5 +14,5 @@
 <button type="button" class="btn btn-primary" (click)="submitAnswer()">Submit</button>
 <div *ngIf="gotResult && status">Correct!</div>
 <div *ngIf="gotResult && !status">Incorrect!</div>
-<i class="fas fa-arrow-circle-left p-1" (click)="nav('back')"></i>
-<i class="fas fa-arrow-circle-right p-1" (click)="nav('forward')"></i>
+<i *ngIf="showBack" class="fas fa-arrow-circle-left p-1" (click)="nav('back')"></i>
+<i *ngIf="showForward" class="fas fa-arrow-circle-right p-1" (click)="nav('forward')"></i>

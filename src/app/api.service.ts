@@ -37,11 +37,7 @@ export class ApiService {
         return this.http.put(`${this.detailsUrl}/${id}`, q, this.jsonHeader);
     }
 
-    public getQuestion(id, q) {
-        return this.http.get(`${this.takeUrl}/${id}?q=${q}`);
-    }
-
-    public submitAnswer(id, q, answer) {
-        return this.http.post(`${this.takeUrl}/${id}?q=${q}`, { answer }, this.jsonHeader);
+    public takeQuiz(id) {
+        return this.http.get(`${this.takeUrl}/${id}`);
     }
 }
