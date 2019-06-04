@@ -65,4 +65,9 @@ export class QuizDetailsComponent implements OnInit {
         }
     }
 
+    delete(questionId: string) {
+        this.apiService.deleteQuestion(this.id, questionId).subscribe(() => {
+            this.fetchData();
+        });
+    }
 }

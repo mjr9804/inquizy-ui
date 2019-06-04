@@ -40,4 +40,8 @@ export class ApiService {
     public takeQuiz(id) {
         return this.http.get(`${this.takeUrl}/${id}`);
     }
+
+    public deleteQuestion(id: string, questionId: string) {
+        return this.http.delete(`${this.detailsUrl}/${id}/${questionId}`);
+    }
 }
