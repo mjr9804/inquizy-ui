@@ -1,18 +1,28 @@
 <h5 [innerText]="question"></h5>
 <ng-container *ngFor="let answer of answers">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <div class="input-group-text">
-                <label for="{{answer}}">
-                    <input id="{{answer}}" [value]='answer' type="radio" name="answers" [(ngModel)]="radioSelected">
-                    <span [innerText]="answer"></span>
-                </label>
+    <div class="row justify-content-center align-items-center">
+        <input id="{{answer}}" [value]='answer' type="radio" name="answers" [(ngModel)]="radioSelected">
+        <div class="col-11">
+            <div [ngClass]="{
+                'border-danger': radioSelected === answer && submitted && !status,
+                'border-success': radioSelected === answer && submitted && status }" class="card border">
+                <div class="card-body" [innerText]="answer" (click)="radioSelected = answer">
+                </div>
             </div>
         </div>
     </div>
 </ng-container>
-<button [disabled]="submitted || !this.radioSelected" type="button" class="btn btn-primary" (click)="submitAnswer()">Submit</button>
-<div *ngIf="gotResult && status">Correct!</div>
-<div *ngIf="gotResult && !status">Incorrect!</div>
-<i *ngIf="showForward" class="fas fa-arrow-circle-right p-1" (click)="nav('forward')"></i>
-<button *ngIf="showFinish" type="button" class="btn btn-primary" [routerLink]="['/score-report']" [state]="{ 'scores': scores }">Finish</button>
+<div class="row"><br /></div>
+<div class="row align-items-center">
+    <button [disabled]="submitted || !this.radioSelected" type="button" class="btn btn-primary mr-3"
+        (click)="submitAnswer()">Submit</button>
+</div>
+<div class="row justify-content-center">
+    <h6 *ngIf="gotResult && status" class="text-success">Correct!</h6>
+    <h6 *ngIf="gotResult && !status" class="text-danger">Incorrect!</h6>
+</div>
+<div class="row justify-content-center">
+    <button class="btn btn-primary" *ngIf="showForward" (click)="nav('forward')">Next Question</button>
+    <button *ngIf="showFinish" type="button" class="btn btn-primary" [routerLink]="['/score-report']"
+        [state]="{ 'scores': scores }">Finish</button>
+</div>
